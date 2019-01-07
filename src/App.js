@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
+import { connect } from 'react-redux';
+import { fetchWeather } from './store';
+
+export class App extends Component {
   render() {
     return (
       <div className="App">
@@ -25,4 +28,9 @@ class App extends Component {
   }
 }
 
-export default App;
+// AppContainer.js
+const mapStateToProps = (state, ownProps) => ({ response: state.response});
+const mapDispatchToProps = { fetchWeather };
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default AppContainer;
